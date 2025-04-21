@@ -1,51 +1,165 @@
-.login-container {
+/* Hogwarts-themed SignUp Page */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+
+.Signup-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #0f0f0f, #000000 80%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.Signup-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+  box-shadow:
+    0 0 2px gold,
+    50px 100px 2px rgba(255, 215, 0, 0.6),
+    120px 200px 3px rgba(255, 215, 0, 0.8),
+    200px 300px 1px rgba(255, 255, 255, 0.5),
+    300px 150px 2px gold,
+    400px 400px 1px rgba(255, 215, 0, 0.7);
+  animation: sparkle 3s linear infinite;
+  z-index: 0;
+}
+
+.Signup-page::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 80%);
+  animation: thunder 3s infinite ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  0% { transform: translate(0, 0); opacity: 0.5; }
+  50% { transform: translate(-10px, -10px); opacity: 1; }
+  100% { transform: translate(0, 0); opacity: 0.5; }
+}
+
+@keyframes thunder {
+  0%, 100% { opacity: 0; }
+  20% { opacity: 0.15; }
+  21% { opacity: 1; }
+  22% { opacity: 0.2; }
+  23% { opacity: 0.9; }
+  24% { opacity: 0.1; }
+  25% { opacity: 0.6; }
+  26% { opacity: 0; }
+}
+
+
+.signup-container {
+  background: linear-gradient(to right, #0a0a0a, #1a1a1a);
+  padding: 4rem 2rem;
+  border-radius: 16px;
   max-width: 400px;
-  margin: 80px auto;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  background: #ffffff;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.15);
   text-align: center;
-  font-family: sans-serif;
+  color: white;
+  z-index: 1;
+  position: relative;
 }
 
-.login-container h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
+.signup-container h2 {
+  font-size: 2rem;
+  color: gold;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px gold;
+  position: relative;
+  z-index: 2;
 }
 
-.login-form {
+.signup-form {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
-.login-form input {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-}
-.login-form select {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-}
-
-.login-form button {
-  padding: 12px;
-  background: #007bff;
+.signup-form input,
+.signup-form select {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1px solid gold;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
   color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s ease;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-.login-form button:hover {
-  background: #0056b3;
+.signup-form input:focus,
+.signup-form select:focus {
+  border-color: #f5d000;
+  box-shadow: 0 0 12px gold;
+}
+
+.signup-form button {
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  background-color: gold;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.signup-form button:hover {
+  background-color: #f5d000;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+.signup-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1px solid gold;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Prevent text from going under the icon */
+.signup-form select:after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 0;
+  pointer-events: none;
+}
+
+.signup-form select:focus {
+  border-color: gold;
+  box-shadow: 0 0 12px gold;
+}
+.select-wrapper {
+  position: relative;
 }

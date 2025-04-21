@@ -1,66 +1,81 @@
 import './index.css';
 import { useState } from 'react';
+import Select from 'react-select';
 
-const Signin = () => {
+const roleOptions = [
+  { value: 'student', label: '🧑‍🎓 Student' },
+  { value: 'teacher', label: '🧙‍♂️ Teacher' },
+  { value: 'parent', label: '👨‍👩‍👧 Parent' },
+  { value: 'admin', label: '⚡ Admin' },
+];
+
+
+const Signup = () => {
   const [email, setEmail] = useState('');
-  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Logging in with:', email, password);
-    try {
-      const response = await fetch('http://localhost:8000/login-details');
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const jsonData = await response.json();
-      console.log(jsonData)
-    } catch (error) {
-      console.error('Fetch error:', error);
-      return null;
-    }
+    console.log('Signing up with:', email, password, role);
   };
 
   return (
-    <div className="login-container">
-      <h2>Sign in</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Enter your New Email ID"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="text" 
-          placeholder="Enter your New user ID"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-          required
-        />
+    <div className="Signup-page">
+      <div className="signup-container">
+        <h2>Create Account</h2>
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="Admin">Admin</option>
-          <option value="Teacher">Teacher</option>
-          <option value="Student">Student</option>
-          <option value="Parent">Parent</option>
-        </select>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <input
-          type="password"
-          placeholder="Enter your New Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+            <Select
+              options={roleOptions}
+              placeholder="Select Role"
+              onChange={(selectedOption) => setRole(selectedOption.value)}
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                  border: '1px solid gold',
+                  borderRadius: '10px',
+                  color: 'white',
+                  boxShadow: 'none',
+                }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: '#1a1a1a',
+                  border: '1px solid gold',
+                }),
+                option: (base, { isFocused }) => ({
+                  ...base,
+                  backgroundColor: isFocused ? '#333' : '#1a1a1a',
+                  color: 'gold',
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  color: 'white',
+                }),
+              }}
+            />
 
-        <button type="submit">Sign in</button>
-      </form>
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
-export default Signin
+export default Signup;

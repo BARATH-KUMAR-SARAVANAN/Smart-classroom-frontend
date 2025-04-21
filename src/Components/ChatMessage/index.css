@@ -1,0 +1,53 @@
+/* Main chat message container */
+.chat-message {
+  display: flex;
+  justify-content: flex-start; /* Default: Messages from professor */
+  margin: 8px 0; /* Reduced margin for compactness */
+  font-size: 0.25rem; /* Reduced font size */
+  line-height: 1.4; /* Adjusted line height for better readability */
+}
+
+.chat-message.student {
+  justify-content: flex-end; /* Align student's messages to the right */
+}
+
+/* Chat bubble inside message */
+.chat-bubble {
+  max-width: 60%; /* Max width for chat bubble */
+  padding: 5px 5px; /* Reduced padding for chat bubbles */
+  border-radius: 12px;
+  position: relative;
+  color: white;
+  background: linear-gradient(135deg, #2a2a2a, #111);
+  border: 1px solid gold;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+  font-size: 0.75rem; /* Reduced font size */
+}
+
+/* Professor's chat bubble - slightly darker */
+.professor .chat-bubble {
+  background: linear-gradient(135deg, #262626, #1b1b1b);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+
+/* Name of the sender */
+.sender-name {
+  font-size: 0.65rem; /* Smaller name size */
+  color: gold;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+/* Text inside the message */
+.message-text {
+  font-size: 0.25rem; /* Smaller text */
+  line-height: 1.3; /* Compact line height */
+}
+
+/* Optional: Add styles for message timestamp (if you plan to use) */
+.timestamp {
+  font-size: 0.6rem;
+  color: #bbb;
+  margin-top: 4px;
+  display: block;
+}

@@ -1,0 +1,125 @@
+/* Main Chatbox container */
+.chat-box {
+  width: 100%;
+  max-width: 600px;
+  height: 80vh; /* Full height minus margin */
+  background-color: #0d0d0d;
+  border: 2px solid gold;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Cinzel Decorative', cursive;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  margin: 30px auto; /* Margin to center */
+}
+
+/* Chat header style */
+.chat-header {
+  background-color: #111;
+  padding: 16px;
+  color: gold;
+  font-size: 1rem; /* Smaller font size */
+  text-align: center;
+  border-bottom: 1px solid gold;
+}
+
+/* Chat messages container */
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: scroll; /* Add vertical scrolling */
+  background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+  color: white;
+}
+
+/* Scrollbar styling */
+.chat-messages::-webkit-scrollbar {
+  width: 8px; /* Thinner scrollbar */
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0; /* Bright silver thumb */
+  border-radius: 10px;
+  border: 3px solid #111; /* Gold border around the thumb */
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background-color: #b0b0b0; /* Slightly darker on hover */
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #222; /* Darker track for contrast */
+}
+
+/* Individual chat messages */
+.chat-message {
+  display: flex;
+  margin: 8px;
+  font-size: 0.85rem; /* Reduced font size */
+}
+
+.chat-message.professor {
+  justify-content: flex-start;
+}
+
+.chat-message.student {
+  justify-content: flex-end;
+}
+
+.chat-bubble {
+  max-width: 60%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  position: relative;
+  color: white;
+  background: linear-gradient(135deg, #2a2a2a, #111);
+  border: 1px solid gold;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.professor .chat-bubble {
+  background: linear-gradient(135deg, #262626, #1b1b1b);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+
+.sender-name {
+  font-size: 0.7rem; /* Smaller name size */
+  color: gold;
+  margin-bottom: 4px;
+}
+
+.message-text {
+  font-size: 0.9rem; /* Smaller message text */
+  line-height: 1.4;
+}
+
+/* Input and button container */
+.chat-input-container {
+  display: flex;
+  border-top: 1px solid gold;
+}
+
+.chat-input-container input {
+  flex: 1;
+  padding: 12px 16px;
+  background-color: #111;
+  border: none;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+}
+
+.chat-input-container button {
+  background-color: gold;
+  color: #111;
+  border: none;
+  padding: 0 20px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-input-container button:hover {
+  background-color: #ffcc00;
+}

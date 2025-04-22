@@ -1,0 +1,162 @@
+/* Global Styles */
+body {
+  font-family: 'Cinzel Decorative', cursive !important;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.assignment-detail-page{
+  background-image: url('https://res.cloudinary.com/dt9nmt0n0/image/upload/v1727108742/27230_xnsqak.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Make the background stay fixed */
+  min-height: 100vh;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.assignment-detail-container {
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 50px auto;
+  box-shadow: 0 0 40px rgba(253, 249, 249, 0.8);
+}
+
+.assignment-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: gold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.assignment-subject, .assignment-type {
+  text-align: center;
+  font-size: 1.5rem;
+  color: silver;
+}
+
+.answer-input {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background-color: #f1f1f1;
+  color: #333;
+}
+  
+
+.assignment-questions {
+  margin-top: 20px;
+}
+
+.assignment-question {
+  margin: 10px 0;  /* Reduced the margin to make it more compact */
+  padding: 10px 35px;    /* Reduced the padding */
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  text-align: left; /* Align the text to the left */
+}
+
+.question-text {
+  font-size: 1rem;  /* Smaller font size for better compactness */
+  color: white;
+  margin: 5px 0;    /* Reduced space between question and options */
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;  /* Reduced margin */
+}
+
+.option {
+  margin: 2px 0;   /* Reduced margin between options */
+  display: flex;
+  align-items: center;
+}
+
+.option input {
+  margin-right: 10px;
+  accent-color: gold;
+}
+
+.option-label {
+  font-size: 1rem;  /* Reduced font size for better alignment */
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.option-label:hover {
+  color: gold;
+  cursor: pointer;
+}
+
+/* File input styling */
+.file-input {
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  margin-top: 10px;
+  display: block;
+  width: 40%;
+  max-width: 80%;
+  cursor: pointer;
+}
+
+/* File input button styling for the native file upload button */
+.file-input::-webkit-file-upload-button {
+  background-color: #ffd700; /* Gold button */
+  color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 15px;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.file-input::-webkit-file-upload-button:hover {
+  background-color: #e6c200; /* Slightly darker gold on hover */
+}
+
+/* Optional: Adding some hover effect for file input */
+.file-input:hover {
+  border-color: #ffd700;
+}
+
+.submit-btn {
+  display: block;
+  margin: 30px auto;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #ffd700;
+  transform: scale(1.1);
+}
+
+.submit-btn:active {
+  background-color: #ffcc00;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+}

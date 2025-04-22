@@ -1,0 +1,146 @@
+/* Global Styles */
+body {
+  font-family: 'Garamond', serif;
+  background: #f9f4e5;
+  color: #3b2d25;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full Page Layout for the Forge */
+.forge-container {
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fdf6e3;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.forge-title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #4b2e2e;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  padding: 0.8rem;
+  border: 1px solid #4b2e2e;
+  border-radius: 8px;
+  font-family: 'Garamond', serif;
+  font-size: 1rem;
+}
+
+select, textarea {
+  max-width: 400px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+/* Themed Dropdowns */
+select {
+  background-color: #f5e1d0;
+  color: #3b2d25;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+select:hover {
+  background-color: #e6c4a3;
+}
+
+/* Action Button */
+.action-button {
+  padding: 0.7rem 1.5rem;
+  background-color: #4b2e2e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #6f3d3d;
+}
+
+/* Questions Preview */
+.questions-preview {
+  background: #fffef5;
+  padding: 2rem;
+  border: 2px dashed #4b2e2e;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.question-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.question-card textarea {
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #4b2e2e;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.question-card button {
+  align-self: flex-start;
+  background-color: #a0522d;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.question-card button:hover {
+  background-color: #6b3b1c;
+}
+
+/* Final Submission Button */
+.submit-button {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  background-color: #006400;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #2e8b57;
+}

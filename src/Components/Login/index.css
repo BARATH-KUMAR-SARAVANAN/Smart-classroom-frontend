@@ -41,6 +41,26 @@
   pointer-events: none;
 }
 
+.signin-redirect-btn {
+  margin-top: 10px;
+  background: transparent;
+  color: gold;
+  border: 1px solid gold;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Cinzel Decorative', cursive;
+  transition: all 0.3s ease;
+}
+
+.signin-redirect-btn:hover {
+  background-color: gold;
+  color: black;
+  box-shadow: 0 0 10px gold;
+}
+
+
 @keyframes sparkle {
   0% { transform: translate(0, 0); opacity: 0.5; }
   50% { transform: translate(-10px, -10px); opacity: 1; }

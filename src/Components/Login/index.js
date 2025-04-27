@@ -1,10 +1,12 @@
 import './index.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Logging in with:', email, password);
@@ -43,6 +45,10 @@ const Login = () => {
         />
 
         <button type="submit">Login</button>
+        
+        <button className="signin-redirect-btn" onClick={() => navigate('/signin')}>
+          New here? Sign up
+        </button>
       </form>
     </div>
     </div>

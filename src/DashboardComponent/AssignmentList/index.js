@@ -16,6 +16,7 @@ const ass2 = {
   subject: "Physics"
 };
 
+
 function AssignmentList(props) {
   const [subjects, setSubjects] = useState(["Maths", "Physics"]);
   const [assignments, setAssignments] = useState([ass1, ass2]);
@@ -25,6 +26,10 @@ function AssignmentList(props) {
 
   const onClickBack = () => {
     setSelectedSubject(null);
+  };
+
+  const goBack = () => {
+    navigate(-1); // navigates to the previous page
   };
 
   const handleSubjectChange = async (subject) => {
@@ -45,6 +50,7 @@ function AssignmentList(props) {
       <h1 className="assignment-list-title">🪄 Your Assignments</h1>
       {!selectedSubject ? (
         <div className="subject-selection">
+          <button onClick={goBack}>Back</button>
           <h2>Choose your subject</h2>
           <div className="subject-list">
             {subjects.map((subject) => (

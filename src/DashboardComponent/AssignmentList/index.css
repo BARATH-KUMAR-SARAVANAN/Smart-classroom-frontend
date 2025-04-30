@@ -1,20 +1,91 @@
 /* Main container */
+
+.assginmentPageContainer{
+  background-image: url('https://res.cloudinary.com/dt9nmt0n0/image/upload/v1727108742/27230_xnsqak.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Make the background stay fixed */
+  min-height: 100vh;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.assginmentPageContainer::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+  box-shadow:
+    0 0 2px gold,
+    50px 100px 2px rgba(255, 215, 0, 0.6),
+    120px 200px 3px rgba(255, 215, 0, 0.8),
+    200px 300px 1px rgba(255, 255, 255, 0.5),
+    300px 150px 2px gold,
+    400px 400px 1px rgba(255, 215, 0, 0.7);
+  animation: sparkle 2.5s linear infinite;
+  z-index: 0;
+}
+.assginmentPageContainer::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 80%);
+  animation: thunder 2.5s infinite ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.assignmentPageBodyContainer{
+  width: 100%;
+  max-width: 1200px; /* Limit width for larger screens */
+  margin-top: 30px; /* Creates space for the navbar */
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center ;
+  align-items: center;
+}
+
+@keyframes sparkle {
+  0% { transform: translate(0, 0); opacity: 0.5; }
+  50% { transform: translate(-10px, -10px); opacity: 1; }
+  100% { transform: translate(0, 0); opacity: 0.5; }
+}
+
+@keyframes thunder {
+  0%, 100% { opacity: 0; }
+  20% { opacity: 0.15; }
+  21% { opacity: 1; }
+  22% { opacity: 0.2; }
+  23% { opacity: 0.9; }
+  24% { opacity: 0.1; }
+  25% { opacity: 0.6; }
+  26% { opacity: 0; }
+}
+
+
+
 .assignment-list-container {
   padding: 2rem;
   text-align: center;
   background-color: black;
   color: white;
-  box-shadow: 0 4px 40px rgb(255, 255, 255);
+  box-shadow: 0 0px 20px rgb(255, 255, 255);
   border-radius: 15px;
   max-width: 1200px;
-  margin: auto;
   font-family: 'Cinzel Decorative', cursive;
 }
 
 .assignment-list-title {
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: gold;
-  animation: sparkle 1.5s infinite;
 }
 
 .subject-selection {
@@ -54,10 +125,10 @@ button {
   border: 2px solid gold;
   border-radius: 8px;
   padding: 10px 20px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 20px;
+  margin-top: 0px;
   width: auto;
   text-align: center;
 }
@@ -99,8 +170,3 @@ button:focus {
   background-color: gold;
 }
 
-@keyframes sparkle {
-  0% { text-shadow: 0 0 10px gold, 0 0 20px gold; }
-  50% { text-shadow: 0 0 20px gold, 0 0 40px gold; }
-  100% { text-shadow: 0 0 10px gold, 0 0 20px gold; }
-}

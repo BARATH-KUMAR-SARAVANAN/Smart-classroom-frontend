@@ -23,33 +23,35 @@ body {
   padding: 30px;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  max-width: 900px;
+  width: 700px;
   margin: 50px auto;
   box-shadow: 0 0 40px rgba(253, 249, 249, 0.8);
 }
 
 .assignment-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   color: gold;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .assignment-subject, .assignment-type {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: silver;
 }
 
 .answer-input {
-  width: 100%;
-  height: 100px;
+  width: 80%;
+  align-self: center;
+  height: 80px;
   padding: 10px;
   font-size: 16px;
   border-radius: 8px;
   border: 2px solid #ccc;
   background-color: #f1f1f1;
   color: #333;
+  margin-left: 40px;
 }
   
 
@@ -58,9 +60,9 @@ body {
 }
 
 .assignment-question {
-  margin: 10px 0;  /* Reduced the margin to make it more compact */
-  padding: 10px 35px;    /* Reduced the padding */
-  background: rgba(0, 0, 0, 0.4);
+  margin: 10px 0px;  /* Reduced the margin to make it more compact */
+  padding: 10px 20px;    /* Reduced the padding */
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
   text-align: left; /* Align the text to the left */
@@ -69,7 +71,7 @@ body {
 .question-text {
   font-size: 1rem;  /* Smaller font size for better compactness */
   color: white;
-  margin: 5px 0;    /* Reduced space between question and options */
+  margin: 0px 0;    /* Reduced space between question and options */
 }
 
 .options {
@@ -79,7 +81,7 @@ body {
 }
 
 .option {
-  margin: 2px 0;   /* Reduced margin between options */
+  margin: 0px 10px;   /* Reduced margin between options */
   display: flex;
   align-items: center;
 }

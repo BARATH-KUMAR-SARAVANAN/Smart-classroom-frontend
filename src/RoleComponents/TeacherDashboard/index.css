@@ -1,9 +1,9 @@
 .teacher-dashboard {
   background-color: #ece2d0;
   color: #2c1b0f;
-  min-height: 100vh;
   padding: 2rem;
   font-family: 'Garamond', serif;
+  border-radius: 15px;
 }
 
 .dashboard-header {

@@ -1,0 +1,61 @@
+/* Home Page Container with background */
+.homePageContainer {
+  background-image: url('https://res.cloudinary.com/dt9nmt0n0/image/upload/v1727108742/27230_xnsqak.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Make the background stay fixed */
+  min-height: 100vh;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Ensures Navbar is always at the top and doesn't overlap */
+.homePageBodyContainer {
+  width: 100%;
+  max-width: 1200px; /* Limit width for larger screens */
+  margin-top: 30px; /* Creates space for the navbar */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px; /* Space at the bottom */
+}
+
+/* Optional: Add a darker overlay for better contrast */
+.homePageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Darker overlay */
+  z-index: -1; /* Keeps overlay behind content */
+}
+
+/* Add animation for the background to give it a mystical moving effect */
+@keyframes mysticBackground {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* Animate background for magical effect */
+.homePageContainer {
+  animation: mysticBackground 15s infinite linear;
+}
+
+/* Extra magic: Hover effect on the ChatBox */
+.homePageBodyContainer:hover {
+  opacity: 0.9; /* Subtle hover effect for the whole page */
+  transition: opacity 0.3s ease;
+}

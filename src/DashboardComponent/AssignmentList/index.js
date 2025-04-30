@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
+import Navbar from '../../Components/Navbar';
 
 const ass1 = {
   id: 1,
@@ -44,47 +45,52 @@ function AssignmentList(props) {
     onAssignmentSelect(assignment); // Pass the selected assignment to the parent via the onAssignmentSelect function
     navigate(`/student/assignment/${assignment.id}`); // Navigate to the assignment detail page
   };
-
+ 
   return (
-    <div className="assignment-list-container">
-      <h1 className="assignment-list-title">🪄 Your Assignments</h1>
-      {!selectedSubject ? (
-        <div className="subject-selection">
-          <button onClick={goBack}>Back</button>
-          <h2>Choose your subject</h2>
-          <div className="subject-list">
-            {subjects.map((subject) => (
-              <div
-                key={subject}
-                className="subject-item"
-                onClick={() => handleSubjectChange(subject)}
-              >
-                {subject}
+    <div className='assginmentPageContainer'>
+      <Navbar/>
+      <div className='assignmentPageBodyContainer'>
+        <div className="assignment-list-container">
+          <h1 className="assignment-list-title">📜 Your Assignments</h1>
+          {!selectedSubject ? (
+            <div className="subject-selection">
+              <button onClick={goBack}> 🔙 Back</button>
+              <h2>Choose your subject</h2>
+              <div className="subject-list">
+                {subjects.map((subject) => (
+                  <div
+                    key={subject}
+                    className="subject-item"
+                    onClick={() => handleSubjectChange(subject)}
+                  >
+                    {subject}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="assignment-list">
+              <h2>Assignments for {selectedSubject}</h2>
+              <button onClick={onClickBack}>Back</button>
+              {assignments.map((assignment) => {
+                if (assignment.subject === selectedSubject) {
+                  return (
+                    <div
+                      key={assignment.id}
+                      className="assignment-item"
+                      onClick={() => handleAssignmentClick(assignment)} // Pass the assignment on click
+                    >
+                      <h2>{assignment.title}</h2>
+                      <p>Type: {assignment.type}</p>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="assignment-list">
-          <h2>Assignments for {selectedSubject}</h2>
-          <button onClick={onClickBack}>Back</button>
-          {assignments.map((assignment) => {
-            if (assignment.subject === selectedSubject) {
-              return (
-                <div
-                  key={assignment.id}
-                  className="assignment-item"
-                  onClick={() => handleAssignmentClick(assignment)} // Pass the assignment on click
-                >
-                  <h2>{assignment.title}</h2>
-                  <p>Type: {assignment.type}</p>
-                </div>
-              );
-            }
-            return null;
-          })}
-        </div>
-      )}
+      </div>
     </div>
   );
 }

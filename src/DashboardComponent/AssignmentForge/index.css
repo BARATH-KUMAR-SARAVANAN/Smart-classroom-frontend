@@ -8,11 +8,24 @@ body {
   box-sizing: border-box;
 }
 
+.assignmentforgepage{
+  background-image: url('https://res.cloudinary.com/dt9nmt0n0/image/upload/v1727108742/27230_xnsqak.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Make the background stay fixed */
+  min-height: 100vh;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
 /* Full Page Layout for the Forge */
 .forge-container {
   padding: 3rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 30px ;
   background-color: #fdf6e3;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
@@ -38,10 +51,11 @@ body {
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
-
+ 
 label {
   font-size: 1.2rem;
   font-weight: bold;
+  color: #4b2e2e;
 }
 
 input, select, textarea {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ChatMessage from '../ChatMessage';
 import './index.css';
-
+import Navbar from '../Navbar';
+ 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -28,22 +29,27 @@ const ChatBox = () => {
   };
 
   return (
-    <div className="chat-box">
-      <div className="chat-header">📜 Chat with Hogwarts Professors</div>
-      <div className="chat-messages">
-        {messages.map((msg, i) => (
-          <ChatMessage key={i} message={msg.message} sender={msg.sender} />
-        ))}
-      </div>
-      <div className="chat-input-container">
-        <input
-          type="text"
-          placeholder="Ask your magical query..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-        />
-        <button onClick={handleSend}>🪄</button>
+    <div className='chatboxPageContainer'>
+      <Navbar/>
+      <div className='chatboxBodyContainer'>
+        <div className="chat-box">
+          <div className="chat-header">📜 Chat with Hogwarts Professors</div>
+          <div className="chat-messages">
+            {messages.map((msg, i) => (
+              <ChatMessage key={i} message={msg.message} sender={msg.sender} />
+            ))}
+          </div>
+          <div className="chat-input-container">
+            <input
+              type="text"
+              placeholder="Ask your magical query..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+            />
+            <button onClick={handleSend}>🪄</button>
+          </div>
+        </div>
       </div>
     </div>
   );

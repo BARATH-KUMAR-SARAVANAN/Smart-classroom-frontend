@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.css';
 
 const TeacherDashboard = () => {
@@ -13,7 +14,9 @@ const TeacherDashboard = () => {
         <div className="card">
           <h2>🪄 Create Assignments</h2>
           <p>Conjure MCQs, theory scrolls, and spell-uploaded PDFs.</p>
-          <button className="action-button">Enter Chamber</button>
+          <Link to='/assignment/forge'>
+            <button className="action-button">Enter Chamber</button>
+          </Link>
         </div>
 
         <div className="card">

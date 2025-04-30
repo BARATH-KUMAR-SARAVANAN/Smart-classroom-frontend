@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
+import TeacherNavbar from '../../Components/TeacherNavbar';
 
 function AssignmentForge() {
   const [selectedClass, setSelectedClass] = useState('');
@@ -73,57 +74,60 @@ function AssignmentForge() {
   };
 
   return (
-    <div className="forge-container">
-      <h1 className="forge-title">🧪 Assignment Forge</h1>
+    <div className='assignmentforgepage'>
+      <TeacherNavbar/>
+      <div className="forge-container">
+        <h1 className="forge-title">🧪 Assignment Forge</h1>
 
-      <div className="form-row">
-        <label>Class:</label>
-        <select value={selectedClass} onChange={e => setSelectedClass(e.target.value)}>
-          <option value="">Select</option>
-          <option value="6">Class 6</option>
-          <option value="7">Class 7</option>
-          <option value="8">Class 8</option>
-        </select>
+        <div className="form-row">
+          <label>Class:</label>
+          <select value={selectedClass} onChange={e => setSelectedClass(e.target.value)}>
+            <option value="">Select</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+          </select>
 
-        <label>Assignment Type:</label>
-        <select value={assignmentType} onChange={e => setAssignmentType(e.target.value)}>
-          <option value="">Select</option>
-          <option value="MCQ">MCQ</option>
-          <option value="Description">Descriptive</option>
-          <option value="Upload">File Upload</option>
-        </select>
-      </div>
-
-      <div className="form-column">
-        <label>Topic:</label>
-        <input type="text" value={topic} onChange={e => setTopic(e.target.value)} placeholder="Enter the topic name..." />
-
-        <label>Today's Description:</label>
-        <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe today's lesson..." />
-
-        <label>Number of Questions:</label>
-        <input type="number" value={questionCount} onChange={e => setQuestionCount(e.target.value)} min="1" max="20" />
-
-        <button className="action-button" onClick={generateQuestions}>
-          {loading ? 'Summoning...' : 'Generate with AI'}
-        </button>
-      </div>
-
-      {questions.length > 0 && (
-        <div className="questions-preview">
-          <h2>📝 Preview & Edit Questions</h2>
-          {questions.map((q, i) => (
-            <div key={i} className="question-card">
-              <textarea
-                value={q.question}
-                onChange={e => handleChange(i, e.target.value)}
-              />
-              <button onClick={() => regenerateOne(i)}>🔁 Regenerate</button>
-            </div>
-          ))}
-          <button className="submit-button" onClick={sendAssignment}>📬 Send Assignment</button>
+          <label>Assignment Type:</label>
+          <select value={assignmentType} onChange={e => setAssignmentType(e.target.value)}>
+            <option value="">Select</option>
+            <option value="MCQ">MCQ</option>
+            <option value="Description">Descriptive</option>
+            <option value="Upload">File Upload</option>
+          </select>
         </div>
-      )}
+
+        <div className="form-column">
+          <label>Topic:</label>
+          <input type="text" value={topic} onChange={e => setTopic(e.target.value)} placeholder="Enter the topic name..." />
+
+          <label>Today's Description:</label>
+          <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe today's lesson..." />
+
+          <label>Number of Questions:</label>
+          <input type="number" value={questionCount} onChange={e => setQuestionCount(e.target.value)} min="1" max="20" />
+
+          <button className="action-button" onClick={generateQuestions}>
+            {loading ? 'Summoning...' : 'Generate with AI'}
+          </button>
+        </div>
+
+        {questions.length > -1 && (
+          <div className="questions-preview">
+            <h2>📝 Preview & Edit Questions</h2>
+            {questions.map((q, i) => (
+              <div key={i} className="question-card">
+                <textarea
+                  value={q.question}
+                  onChange={e => handleChange(i, e.target.value)}
+                />
+                <button onClick={() => regenerateOne(i)}>🔁 Regenerate</button>
+              </div>
+            ))}
+            <button className="submit-button" onClick={sendAssignment}>📬 Send Assignment</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

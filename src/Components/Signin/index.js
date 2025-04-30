@@ -1,7 +1,8 @@
 import './index.css';
 import { useState } from 'react';
 import Select from 'react-select';
-
+import axios from 'axios'
+ 
 const roleOptions = [
   { value: 'student', label: '🧑‍🎓 Student' },
   { value: 'teacher', label: '🧙‍♂️ Teacher' },
@@ -12,12 +13,25 @@ const roleOptions = [
 
 const Signup = () => {
   const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signing up with:', email, password, role);
+    try {
+      const response = await axios.post('http://localhost:8000/students/signup', {
+        userName: userName,
+        email: email,
+        password: password,
+        role: role
+      });
+      alert('Sign-up successful! 🧙‍♀️');
+      console.log(response.data)
+    } catch (error) {
+      console.error('Error signing up:', error);
+      alert('Sign-up failed! 🧹');
+    }
   };
 
   return (
@@ -25,6 +39,13 @@ const Signup = () => {
       <div className="signup-container">
         <h2>Create Account</h2>
         <form className="signup-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="User Name"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+          />
           <input
             type="email"
             placeholder="Email"

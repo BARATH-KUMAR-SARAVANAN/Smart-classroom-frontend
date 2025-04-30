@@ -1,4 +1,28 @@
 /* Main Chatbox container */
+.chatboxPageContainer{
+  background-image: url('https://res.cloudinary.com/dt9nmt0n0/image/upload/v1727108742/27230_xnsqak.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Make the background stay fixed */
+  min-height: 100vh;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.chatboxBodyContainer{
+  width: 100%;
+  max-width: 1200px; /* Limit width for larger screens */
+  margin-top: 20px; /* Creates space for the navbar */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .chat-box {
   width: 100%;
   max-width: 600px;
@@ -11,7 +35,6 @@
   flex-direction: column;
   font-family: 'Cinzel Decorative', cursive;
   box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-  margin: 30px auto; /* Margin to center */
 }
 
 /* Chat header style */

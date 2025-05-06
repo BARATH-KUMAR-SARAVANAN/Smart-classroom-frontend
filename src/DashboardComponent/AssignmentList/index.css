@@ -5,14 +5,14 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Make the background stay fixed */
-  min-height: 100vh;
+  height: 100vh;
   color: aliceblue;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 20px;
 }
-
+ 
 .assginmentPageContainer::before{
   content: '';
   position: absolute;
@@ -31,6 +31,7 @@
   animation: sparkle 2.5s linear infinite;
   z-index: 0;
 }
+
 .assginmentPageContainer::after {
   content: '';
   position: absolute;
@@ -69,8 +70,6 @@
   25% { opacity: 0.6; }
   26% { opacity: 0; }
 }
-
-
 
 .assignment-list-container {
   padding: 2rem;

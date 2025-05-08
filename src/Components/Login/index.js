@@ -1,5 +1,5 @@
 import './index.css';
-import { useState, useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -9,11 +9,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      navigate('/student', { replace: true }); 
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      const token = JSON.parse(userInfo).access_token;
+      if (token) {
+        navigate('/student', { replace: true });
+      }
     }
   }, [navigate]);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

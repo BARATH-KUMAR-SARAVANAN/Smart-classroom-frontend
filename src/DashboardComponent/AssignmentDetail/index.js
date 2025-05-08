@@ -6,65 +6,80 @@ import Navbar from '../../Components/Navbar';
 const AssignmentDetail = () => {
   const { id } = useParams(); // Get the assignment ID from the URL
   const [assignment, setAssignment] = useState(null); // State to store the assignment details
-  const [assignment2, setAssignment2] = useState(null); // State to store the assignment details
   const [answers, setAnswers] = useState({}); // State to store answers for each question
   const navigate = useNavigate();
  
   useEffect(() => {
-    // Fetch assignment details from the backend (replace with your actual API call)
+
     const fetchAssignmentDetails = async () => {
-      const fetchedAssignment2 = {
-        id: 1,
-        title: "Trigonometry",
-        type: "mcq",
-        subject: "Maths",
-        questions: [
-          { id: 1, question: "What is sin 30°?", options: ["0.5", "1", "0.866", "1.5"] },
-          { id: 2, question: "What is cos 60°?", options: ["0.5", "1", "0.866", "1.5"] }
-        ]
-      };
-
-      // Simulating the different assignment types:
-      // fetchedAssignment1: file upload type
-      // fetchedAssignment2: description type
-      const fetchedAssignment1 = {
-        id: 1,
-        title: "Photosynthesis Process",
-        type: "file upload",
-        subject: "Biology",
-        questions: [
-          { id: 1, question: "Upload a diagram of the photosynthesis process.", options: [] },
-          { id: 2, question: "Provide a PDF document explaining the steps involved in photosynthesis.", options: [] },
-          { id: 1, question: "Upload a diagram of the photosynthesis process.", options: [] },
-          { id: 2, question: "Provide a PDF document explaining the steps involved in photosynthesis.", options: [] },
-        ]
-      };
-
-      const fetchedAssignment = {
-        id: 1,
-        title: "The Laws of Motion",
-        type: "description",
-        subject: "Physics",
-        questions: [
-          { id: 1, question: "Describe Newton's First Law of Motion.", options: [] },
-          { id: 2, question: "Explain the concept of inertia.", options: [] },
-          { id: 1, question: "Describe Newton's First Law of Motion.", options: [] },
-          { id: 2, question: "Explain the concept of inertia.", options: [] },
-        ]
-      };
-
-      // Use one of the assignments based on a condition for testing
-      setAssignment(fetchedAssignment);
-      setAssignment2(fetchedAssignment1) // Change to fetchedAssignment1 or fetchedAssignment2 for testing
+      try {
+        const response = await fetch(`http://localhost:8000/students/${id}/questions`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch assignment questions");
+        }
+        const data = await response.json();
+        setAssignment({
+          id,
+          title: "Assignment Title", // You might want to fetch this as well
+          subject: "Subject Name",   // You might want to fetch this as well
+          type: "mcq",               // You might want to fetch this as well
+          questions: data
+        });
+      } catch (error) {
+        console.error(error);
+      }
     };
-
+  
     fetchAssignmentDetails();
   }, [id]);
+  
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const studentId = userInfo?.user_id;
+
+  const formData = new FormData();
+  formData.append("assignment_id", assignment.id);
+  formData.append("student_id", studentId);
+
+  const responses = [];
+
+  for (const question of assignment.questions) {
+    const answer = answers[question.id];
+    if (assignment.type === "file upload" && answer instanceof File) {
+      formData.append("files", answer);
+      responses.push({
+        question_id: question.id,
+        file_name: answer.name
+      });
+    } else {
+      responses.push({
+        question_id: question.id,
+        response: answer
+      });
+    }
+  }
+
+  formData.append("responses", JSON.stringify(responses));
+
+  try {
+    const response = await fetch("http://localhost:8000/students/student_responses/", {
+      method: "POST",
+      body: formData
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to submit responses");
+    }
+
     alert("Assignment submitted!");
-    navigate("/"); 
-  };
+    navigate("/student/assignments");
+  } catch (error) {
+    console.error(error);
+    alert("An error occurred while submitting the assignment.");
+  }
+};
+
 
   const handleInputChange = (e, questionId) => {
     setAnswers({ ...answers, [questionId]: e.target.value });
@@ -88,14 +103,18 @@ const AssignmentDetail = () => {
         <h3 className="assignment-type">Type: {assignment.type}</h3>
 
         <div className="assignment-questions">
-          {assignment.questions.map((question) => (
-            <div key={question.id} className="assignment-question">
-              <p className="question-text">{question.question}</p>
+        {assignment.questions.map((question) => {
+          const options = typeof question.options === "string"
+            ? JSON.parse(question.options)
+            : question.options;
 
-              {/* Handling MCQ Type Question */}
+          return (
+            <div key={question.id} className="assignment-question">
+              <p className="question-text">{question.question_text}</p>
+
               {assignment.type === "mcq" && (
                 <div className="options">
-                  {question.options.map((option, index) => (
+                  {options.map((option, index) => (
                     <div key={index} className="option">
                       <input
                         type="radio"
@@ -104,36 +123,36 @@ const AssignmentDetail = () => {
                         value={option}
                         onChange={(e) => handleInputChange(e, question.id)}
                       />
-                      <label htmlFor={`q${question.id}-option${index}`} className="option-label">{option}</label>
+                      <label htmlFor={`q${question.id}-option${index}`} className="option-label">
+                        {option}
+                      </label>
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* Handling Description Type Question */}
-              {assignment.type === "description" && (
-                <textarea
-                  className="answer-input"
-                  placeholder="Write your answer here..."
-                  value={answers[question.id] || ""}
-                  onChange={(e) => handleInputChange(e, question.id)}
-                />
-              )}
+      {assignment.type === "description" && (
+        <textarea
+          className="answer-input"
+          placeholder="Write your answer here..."
+          value={answers[question.id] || ""}
+          onChange={(e) => handleInputChange(e, question.id)}
+        />
+      )}
 
-              {/* Handling File Upload Type Question */}
-              {assignment.type === "file upload" && (
-                <input
-                  type="file"
-                  className="file-input"
-                  onChange={(e) => handleFileChange(e, question.id)}
-                />
-              )}
-            </div>
-          ))}
+      {assignment.type === "file upload" && (
+        <input
+          type="file"
+          className="file-input"
+          onChange={(e) => handleFileChange(e, question.id)}
+        />
+      )}
+    </div>
+  );
+})}
+
           
         </div>
-
-        
 
         <button className="submit-btn" onClick={handleSubmit}>
           Submit Assignment

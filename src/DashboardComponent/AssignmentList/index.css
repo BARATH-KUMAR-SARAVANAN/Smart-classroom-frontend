@@ -1,171 +1,75 @@
-/* Main container */
-
-.assginmentPageContainer{
-  background-image: url('https://res.cloudinary.com/dt9nmt0n0/image/upload/v1727108742/27230_xnsqak.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Make the background stay fixed */
-  height: 100vh;
-  color: aliceblue;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+.assignment-page {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 0 20px;
-}
- 
-.assginmentPageContainer::before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: transparent;
-  box-shadow:
-    0 0 2px gold,
-    50px 100px 2px rgba(255, 215, 0, 0.6),
-    120px 200px 3px rgba(255, 215, 0, 0.8),
-    200px 300px 1px rgba(255, 255, 255, 0.5),
-    300px 150px 2px gold,
-    400px 400px 1px rgba(255, 215, 0, 0.7);
-  animation: sparkle 2.5s linear infinite;
+  background-image: url('https://res.cloudinary.com/dt9nmt0n0/image/upload/v1727108742/27230_xnsqak.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
   z-index: 0;
 }
 
-.assginmentPageContainer::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 80%);
-  animation: thunder 2.5s infinite ease-in-out;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.assignmentPageBodyContainer{
-  width: 100%;
-  max-width: 1200px; /* Limit width for larger screens */
-  margin-top: 30px; /* Creates space for the navbar */
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  justify-content: center ;
-  align-items: center;
-}
-
-@keyframes sparkle {
-  0% { transform: translate(0, 0); opacity: 0.5; }
-  50% { transform: translate(-10px, -10px); opacity: 1; }
-  100% { transform: translate(0, 0); opacity: 0.5; }
-}
-
-@keyframes thunder {
-  0%, 100% { opacity: 0; }
-  20% { opacity: 0.15; }
-  21% { opacity: 1; }
-  22% { opacity: 0.2; }
-  23% { opacity: 0.9; }
-  24% { opacity: 0.1; }
-  25% { opacity: 0.6; }
-  26% { opacity: 0; }
-}
-
-.assignment-list-container {
-  padding: 2rem;
-  text-align: center;
-  background-color: black;
-  color: white;
-  box-shadow: 0 0px 20px rgb(255, 255, 255);
-  border-radius: 15px;
+.assignment-content {
+  width: 90%;
   max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
   font-family: 'Cinzel Decorative', cursive;
 }
 
-.assignment-list-title {
-  font-size: 1.5rem;
+
+.assignment-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
   color: gold;
 }
 
-.subject-selection {
-  padding: 1rem;
+.assignment-loading,
+.assignment-none {
+  text-align: center;
+  color: white;
   margin-top: 2rem;
 }
 
-.subject-list {
+.assignment-grid {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
-.subject-item {
-  margin: 1rem;
-  padding: 0.5rem;
-  background-color: silver;
-  color: black;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 80%;
-  text-align: center;
-}
-
-.subject-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(255, 223, 0, 0.4);
-  background-color: gold;
-}
-
-/* Styling for the back button */
-button {
-  font-family: 'Cinzel Decorative', cursive;
-  background-color: black;
-  color: gold;
+.assignment-card {
+  width: 250px;
+  background: linear-gradient(145deg, #1e1e1e, #292929);
   border: 2px solid gold;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 1rem;
+  border-radius: 12px;
+  padding: 1rem;
+  color: white;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 0px;
-  width: auto;
-  text-align: center;
-}
-
-/* Hover effects for the back button */
-button:hover {
-  background-color: gold;
-  color: black;
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 223, 0, 0.6);
-}
-
-/* Focus effects for better accessibility */
-button:focus {
-  outline: none;
-  box-shadow: 0 0 5px gold;
-}
-
-.assignment-list {
-  margin-top: 2rem;
-}
-
-.assignment-item {
-  padding: 0.5rem;
-  background-color: silver;
-  color: black;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 80%;
-  margin: 1rem auto;
-  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
-.assignment-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(255, 223, 0, 0.4);
-  background-color: gold;
+.assignment-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 223, 0, 0.7);
+  background-color: #2a2a2a;
 }
 
+.assignment-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: gold;
+}
+
+.assignment-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+}

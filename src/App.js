@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
-import Login from './Components/Login';
+import Login from './Components/Login'
 import Signin from './Components/Signin';
 import ChatBox from './Components/ChatBox';
 import ProtectedRoute from './Components/ProtectedRoute';

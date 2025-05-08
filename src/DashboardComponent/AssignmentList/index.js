@@ -1,98 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './index.css';
 import Navbar from '../../Components/Navbar';
+import './index.css';
 
-const ass1 = {
-  id: 1,
-  type: "mcq",
-  title: "Trignomentry",
-  subject: "Maths"
-};
-
-const ass2 = {
-  id: 2,
-  type: "description",
-  title: "Moment of Inertia",
-  subject: "Physics"
-};
-
-
-function AssignmentList(props) {
-  const [subjects, setSubjects] = useState(["Maths", "Physics"]);
-  const [assignments, setAssignments] = useState([ass1, ass2]);
-  const [selectedSubject, setSelectedSubject] = useState(null);
+function AssignmentList() {
+  const [assignments, setAssignments] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { onAssignmentSelect } = props; // Getting the onAssignmentSelect function from props
 
-  const onClickBack = () => {
-    setSelectedSubject(null);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userId = userInfo?.user_id;
+  const role = userInfo?.role;
+
+  useEffect(() => {
+    if (role === "student") {
+      fetch(`http://localhost:8000/students/${userId}/assignments`)
+        .then(res => res.json())
+        .then(data => {
+          setAssignments(data);
+          setLoading(false);
+        });
+    }
+  }, [userId, role]);
+
+  const handleAssignmentClick = (assignmentId) => {
+    console.log(assignmentId)
+    navigate(`/student/assignment/${assignmentId}`);
   };
 
-  const goBack = () => {
-    navigate(-1); // navigates to the previous page
-  };
-
-  const handleSubjectChange = async (subject) => {
-    setSelectedSubject(subject);
-    // Fetch assignments based on the selected subject (you can uncomment this part when the API is ready)
-    // const response = await fetch(`http://localhost:8000/api/assignments?subject=${subject}`);
-    // const data = await response.json();
-    // setAssignments(data);
-  };
-
-  const handleAssignmentClick = (assignment) => {
-    onAssignmentSelect(assignment); // Pass the selected assignment to the parent via the onAssignmentSelect function
-    navigate(`/student/assignment/${assignment.id}`); // Navigate to the assignment detail page
-  };
- 
   return (
-    <div className='assginmentPageContainer'>
-      <Navbar/>
-      <div className='assignmentPageBodyContainer'>
-        <div className="assignment-list-container">
-          <h1 className="assignment-list-title">📜 Your Assignments</h1>
-          {!selectedSubject ? (
-            <div className="subject-selection">
-              <button onClick={goBack}> 🔙 Back</button>
-              <h2>Choose your subject</h2>
-              <div className="subject-list">
-                {subjects.map((subject) => (
-                  <div
-                    key={subject}
-                    className="subject-item"
-                    onClick={() => handleSubjectChange(subject)}
-                  >
-                    {subject}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="assignment-list">
-              <h2>Assignments for {selectedSubject}</h2>
-              <button onClick={onClickBack}>Back</button>
-              {assignments.map((assignment) => {
-                if (assignment.subject === selectedSubject) {
-                  return (
-                    <div
-                      key={assignment.id}
-                      className="assignment-item"
-                      onClick={() => handleAssignmentClick(assignment)} // Pass the assignment on click
-                    >
-                      <h2>{assignment.title}</h2>
-                      <p>Type: {assignment.type}</p>
-                    </div>
-                  );
-                }
-                return null;
-              })}
-            </div>
-          )}
-        </div>
+    <div className="assignment-page">
+      <Navbar />
+      <div className="assignment-content">
+        <h1 className="assignment-heading">⚡ Your Hogwarts Assignments</h1>
+        {loading ? (
+          <p>Loading...</p>
+        ) : assignments.length === 0 ? (
+          <p>No assignments found.</p>
+        ) : (
+          <div className="assignment-grid">
+            {assignments.map((assignment) => (
+              <button
+                key={assignment.id}
+                className="assignment-card"
+                onClick={() => handleAssignmentClick(assignment.id)}
+              >
+                <h2>{assignment.title}</h2>
+                <p>Subject: {assignment.subject}</p>
+                <p>Type: {assignment.assignment_type}</p>
+                {assignment.due_date && (
+                  <p>Due: {new Date(assignment.due_date).toLocaleDateString()}</p>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
+  
 }
 
 export default AssignmentList;

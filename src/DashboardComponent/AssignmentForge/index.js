@@ -88,7 +88,6 @@ function AssignmentForge() {
     const classData = await classRes.json();
     if (!classRes.ok) return alert(classData.detail || "Class not found");
     console.log(classData)
-    // 🧠 Normalize question objects
     const formattedQuestions = questions.map(q => ({
       question_text: q.question,
       options: JSON.stringify(q.options),
@@ -96,7 +95,7 @@ function AssignmentForge() {
       marks: 1  // Set a default mark or make it dynamic if needed
     }));
 
-    console.log(formattedQuestions)
+    console.log(formattedQuestions,assignmentType)
   
     const response = await fetch('http://localhost:8000/teachers/send-assignment', {
       method: 'POST',
@@ -108,7 +107,7 @@ function AssignmentForge() {
         subject,
         description,
         due_date: dueDate,
-        teacher_id: 1,
+        teacher_id: 2,
         questions: formattedQuestions
       })
     });
@@ -154,7 +153,7 @@ function AssignmentForge() {
           <select value={assignmentType} onChange={e => setAssignmentType(e.target.value)}>
             <option value="">Select</option>
             <option value="mcq">MCQ</option>
-            <option value="desc">Descriptive</option>
+            <option value="description">Descriptive</option>
             <option value="prob">Mathmatical Problem</option>
             <option value="file">File Upload</option>
           </select>

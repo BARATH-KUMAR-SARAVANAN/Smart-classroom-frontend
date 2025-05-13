@@ -28,7 +28,9 @@ const TeacherDashboard = () => {
         <div className="card">
           <h2>📚 Submissions</h2>
           <p>Examine homework scrolls, evaluate, and offer feedback spells.</p>
-          <button className="action-button">Check Scrolls</button>
+          <Link to='/teacher/assignment'>
+            <button className="action-button">Check Scrolls</button>
+          </Link>
         </div>
       </div>
     </div>

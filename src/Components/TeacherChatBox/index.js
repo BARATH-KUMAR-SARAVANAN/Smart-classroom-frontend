@@ -4,7 +4,7 @@ import './index.css';
 import Navbar from '../Navbar';
 import { v4 as uuidv4 } from 'uuid';
 
-const ChatBox = ({ role = 'student' }) => {
+const TeacherChatBox = ({ role = 'student' }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [sessionId, setSessionId] = useState('');
@@ -69,4 +69,4 @@ const ChatBox = ({ role = 'student' }) => {
   );
 };
 
-export default ChatBox;
+export default TeacherChatBox;

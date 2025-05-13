@@ -14,7 +14,7 @@ const Navbar = () => {
       <ul className="navLinks">
         <li><a href="/student">🏠 Common Hall</a></li>
         <li><a href="/student/assignments">📜 Chamber of Assignments</a></li>
-        <li><a href="/chatbox">🧙‍♂️ Professor’s Help</a></li>
+        <li><a href="/chatbox">🧙🏻‍♂️ Professor’s Help</a></li>
         <li onClick={handleLogout}><a href="/login">🚪Portal Exit</a></li>
       </ul>
     </nav>

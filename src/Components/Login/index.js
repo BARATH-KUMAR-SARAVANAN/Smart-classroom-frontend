@@ -67,7 +67,7 @@ const Login = () => {
       // Step 3: Store everything in localStorage as a single object
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       alert(`Welcome back, ${userInfo.username} 🧙‍♂️`);
-  
+      
       navigate(`/${data.role}`);
     } catch (error) {
       console.error('Login error:', error.message);
